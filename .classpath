@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.make.equo.application.client"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.make.equo.application.provider"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
