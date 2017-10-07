@@ -3,22 +3,34 @@ package main.app;
 import com.make.equo.application.api.IEquoFramework;
 import com.make.equo.application.client.api.Equo;
 import com.make.equo.application.model.EquoApplication;
+import com.make.equo.application.model.MenuItemBuilder;
+import com.make.equo.application.model.OptionalFieldBuilder;
 
 public class NetflixApplication implements IEquoFramework {
 
 	@Override
 	public EquoApplication buildApp(EquoApplication application) {
-		return application
+		OptionalFieldBuilder mainView = application
 				.name("Netflix")
 				.withSingleView("netflix.com")
+				.addShortcut("M1+I", () -> {
+					System.out.println("This is a nice global shortcut!");
+				})
+				.addShortcut("M1+V", () -> {
+					System.out.println("Another nice global shortcut!");
+				});
+		
+		MenuItemBuilder menuItemBuilder = mainView
 				.withMainMenu("File")
 					.addMenuItem("New Playlist").onClick(() -> {
 						System.out.println("New Playlist Window...");
 					})
+					.addShorcut("M1+N")
 					.addMenuSeparator()
 					.addMenu("Import Playlist")
-						.addMenuItem("iTunes")
-				.withMainMenu("View")
+						.addMenuItem("iTunes");
+		
+		mainView.withMainMenu("View")
 					.addMenuItem("Right Sidebar")
 					.addMenuSeparator()
 					.addMenuItem("Actual Size")
@@ -29,6 +41,10 @@ public class NetflixApplication implements IEquoFramework {
 					.addMenuItem("Go Forward")
 					.addMenuSeparator()
 					.addMenuItem("Enter Full Screen")
+					.onClick(() -> {
+						System.out.println("Hello Netflix world!");
+					});
+		return menuItemBuilder
 				.withMainMenu("Playback")
 					.addMenuItem("Play")
 					.addMenuSeparator()
@@ -39,11 +55,6 @@ public class NetflixApplication implements IEquoFramework {
 					.addMenuSeparator()
 					.addMenuItem("Volume Up")
 					.addMenuItem("Volume Down")
-					.addMenuSeparator()
-					.addMenuItem("Enter Full Screen")
-						.addMenuItem("Otro item").onClick(() -> {
-							System.out.println("Hola Netflix world 2!");
-						})
 					.start();
 	}
 	
