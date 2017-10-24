@@ -12,7 +12,7 @@ public class NetflixApplication implements IEquoFramework {
 	public EquoApplication buildApp(EquoApplication application) {
 		OptionalFieldBuilder mainView = application
 				.name("Netflix")
-				.withSingleView("netflix.com")
+				.withSingleView("https://www.netflix.com")
 				.addShortcut("M1+I", () -> {
 					System.out.println("This is a nice global shortcut!");
 				})
