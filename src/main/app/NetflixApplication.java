@@ -1,24 +1,41 @@
 package main.app;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 import com.make.equo.application.api.IEquoFramework;
 import com.make.equo.application.client.api.Equo;
 import com.make.equo.application.model.EquoApplication;
 import com.make.equo.application.model.MenuItemBuilder;
-import com.make.equo.application.model.OptionalFieldBuilder;
+import com.make.equo.application.model.OptionalViewBuilder;
 
 public class NetflixApplication implements IEquoFramework {
 
 	@Override
 	public EquoApplication buildApp(EquoApplication application) {
-		OptionalFieldBuilder mainView = application
+		OptionalViewBuilder mainView = application
 				.name("Netflix")
-				.withSingleView("https://www.netflix.com")
-				.addShortcut("M1+I", () -> {
-					System.out.println("This is a nice global shortcut!");
-				})
-				.addShortcut("M1+V", () -> {
-					System.out.println("Another nice global shortcut!");
-				});
+				.withSingleView("https://www.netflix.com");
+		
+//		File jsScriptFile = new File(getClass().getClassLoader().getResource("script.js").getFile());
+		
+//		try {
+			try {
+				mainView.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+						.addCustomScript("script.js");
+				mainView.addShortcut("M1+I", () -> {
+							System.out.println("This is a nice global shortcut!");
+						})
+						.addShortcut("M1+V", () -> {
+							System.out.println("Another nice global shortcut!");
+						});
+			} catch (IOException | URISyntaxException e) {
+				e.printStackTrace();
+			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		MenuItemBuilder menuItemBuilder = mainView
 				.withMainMenu("File")
