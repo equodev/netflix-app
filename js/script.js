@@ -1,17 +1,22 @@
 $(document).ready(function() {
 	
-	var imdbDiv = $( "<div/>", {
-	  class: "imdbLink"
-	});
-	var imdbLink = $( "<a/>", {
+    var imdbImage = $( "<span/>" ) ;
+    imdbImage.css({"max-width":"80px","height":"auto"});
+    imdbImage.append("<img id=\"imdb_img\" src=\"equo/IMDB_logo_2016.png\" style=\"max-width:60px;height:auto;\" alt=\"IMDB\" />")
+    //imdbImage.append("<img id=\"imdb_img\" src=\"file://Users/seba/myRepository/equo-product/netflix-desktop-app/bin/IMDB_logo_2016.png\" alt=\"IMDB\" />")
+    
+    var imdbLink = $( "<a/>", {
       role: "link",
       class: "nf-icon-button"
-    })
-    .append("<span role=\"presentation\" class=\"nf-icon-button-icon\"></span>")
-    .append("<span class=\"nf-icon-button-label\" role=\"status\" aria-live=\"assertive\">IMDB</span>");
+    });
+    imdbLink.append(imdbImage);
     
-    imdbDiv.append(imdbLink);
+    var divWrapper = $("<div/>").css({"margin-top":"10px"});
     
+    var imdbDiv = $( "<div/>", {
+	  class: "imdbLink"
+	});
+    imdbDiv.append(divWrapper).append(imdbLink);
     
     var observeDOM = (function(){
 	    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
@@ -33,13 +38,14 @@ $(document).ready(function() {
 	    };
 	})();
 
-	// Observe the mount point element
-	observeDOM( document.getElementById('appMountPoint') ,function(mutations){
+	// Observe the body
+	var targetNode = document.body;
+	observeDOM( targetNode ,function(mutations){
 		for (var i = 0; i < mutations.length; i++) {
 			var mutation = mutations[i];
 			if (mutation.addedNodes.length && mutation.addedNodes[0].id == 'pane-Overview') {
-				console.log('siiii es pane overviewwww', mutation.addedNodes);
-				imdbLink.insertAfter('#pane-Overview div.overview');
+				//console.log('siiii es pane overviewwww', mutation.addedNodes);
+				imdbDiv.insertAfter('#pane-Overview div.overview');
 			}
 		}
 	});
