@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	const imdbUrlTemplate = `http://www.imdb.com/find?ref_=nv_sr_fn&q=VIDEO_TITLE&s=all`;
 	
     var imdbImage = $( "<span/>" ) ;
     imdbImage.css({"max-width":"80px","height":"auto"});
@@ -16,7 +17,36 @@ $(document).ready(function() {
     var imdbDiv = $( "<div/>", {
 	  class: "imdbLink"
 	});
-    imdbDiv.append(divWrapper).append(imdbLink);
+	imdbDiv.append(divWrapper).append(imdbLink);
+	
+	var getVideoTitle = function() {
+		var currentTitle = $('.title, .has-jawbone-nav-transition, .text');
+		var imgTitle = currentTitle.children('img.logo');
+		var altAttr = imgTitle.attr('alt');
+		var videoTitle;
+		if (typeof altAttr !== 'undefined') {
+			videoTitle = altAttr;
+		} else {
+			var divTitle = currentTitle.children('div.text');
+			videoTitle = divTitle.text();
+		}
+		return videoTitle;
+	}
+
+	var getImdbUrl = function(videoTitle) {
+		var imdbVideoTitle = videoTitle.replace(/ /g, '+');
+		var imdbUrl = imdbUrlTemplate.replace('VIDEO_TITLE', imdbVideoTitle);
+		return imdbUrl;
+	}
+
+	var refreshImdbPage = function() {
+		var videoTitle = getVideoTitle();
+		var imdbUrl = getImdbUrl(videoTitle);
+		equo.updateBrowser({
+			url: imdbUrl, 
+			name: 'IMDB'
+		});
+	}
     
     var observeDOM = (function(){
 	    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
@@ -43,12 +73,26 @@ $(document).ready(function() {
 	observeDOM( targetNode ,function(mutations){
 		for (var i = 0; i < mutations.length; i++) {
 			var mutation = mutations[i];
-			if (mutation.addedNodes.length && mutation.addedNodes[0].id == 'pane-Overview') {
-				//console.log('siiii es pane overviewwww', mutation.addedNodes);
-				imdbDiv.insertAfter('#pane-Overview div.overview');
+			if (mutation.addedNodes.length) {
+				var addedNode = $(mutation.addedNodes[0]);
+				var optionalOverview = addedNode.find('#pane-Overview div.overview');
+				if (optionalOverview.length) {
+					var overviewElement = $(optionalOverview[0]);
+					imdbDiv.insertAfter(overviewElement);
+					refreshImdbPage();
+				}
 			}
 		}
 	});
+
+	imdbDiv.click(function() {
+		var videoTitle = getVideoTitle();
+		var imdbUrl = getImdbUrl(videoTitle);
+		equo.openBrowser({
+			url: imdbUrl, 
+			name: 'IMDB',
+			position: 'bottom'
+		});
+	});
     
 });
-
