@@ -20,14 +20,14 @@ $(document).ready(function() {
 	imdbDiv.append(divWrapper).append(imdbLink);
 	
 	var getVideoTitle = function() {
-		var currentTitle = $('.title, .has-jawbone-nav-transition, .text');
-		var imgTitle = currentTitle.children('img.logo');
+		var currentTitle = $('.title, .has-jawbone-nav-transition, .text')[0];
+		var imgTitle = $(currentTitle).children('img.logo');
 		var altAttr = imgTitle.attr('alt');
 		var videoTitle;
 		if (typeof altAttr !== 'undefined') {
 			videoTitle = altAttr;
 		} else {
-			var divTitle = currentTitle.children('div.text');
+			var divTitle = $(currentTitle).children('div.text');
 			videoTitle = divTitle.text();
 		}
 		return videoTitle;
