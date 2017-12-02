@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	const imdbUrlTemplate = `http://www.imdb.com/find?ref_=nv_sr_fn&q=VIDEO_TITLE&s=all`;
+	let previousSelectedTitleElement = 'undefined';
 	
     var imdbImage = $( "<span/>" ) ;
     imdbImage.css({"max-width":"80px","height":"auto"});
@@ -20,7 +21,12 @@ $(document).ready(function() {
 	imdbDiv.append(divWrapper).append(imdbLink);
 	
 	var getVideoTitle = function() {
-		var currentTitle = $('.title, .has-jawbone-nav-transition, .text')[0];
+		var outerElement = $('.title.has-jawbone-nav-transition');
+		var currentTitle = outerElement.first();
+		if (currentTitle[0] == previousSelectedTitleElement) {
+			currentTitle = outerElement.last();
+		}
+		previousSelectedTitleElement = currentTitle[0];
 		var imgTitle = $(currentTitle).children('img.logo');
 		var altAttr = imgTitle.attr('alt');
 		var videoTitle;
@@ -31,13 +37,13 @@ $(document).ready(function() {
 			videoTitle = divTitle.text();
 		}
 		return videoTitle;
-	}
+	};
 
 	var getImdbUrl = function(videoTitle) {
 		var imdbVideoTitle = videoTitle.replace(/ /g, '+');
 		var imdbUrl = imdbUrlTemplate.replace('VIDEO_TITLE', imdbVideoTitle);
 		return imdbUrl;
-	}
+	};
 
 	var refreshImdbPage = function() {
 		var videoTitle = getVideoTitle();
@@ -46,7 +52,7 @@ $(document).ready(function() {
 			url: imdbUrl, 
 			name: 'IMDB'
 		});
-	}
+	};
     
     var observeDOM = (function(){
 	    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
