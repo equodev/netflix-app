@@ -18,22 +18,24 @@ public class NetflixApplication implements IEquoFramework {
 				
 				// Add custom scripts to modify the Web application
 				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
-				.addCustomScript("script.js")
+				.addCustomScript("imdb.js")
+				.addCustomScript("actions.js")
 				
 				// Add global Shorcuts
 				.addShortcut("M1+I", () -> {
 						System.out.println("This is a nice global shortcut!");
 					})
-				.addShortcut("M1+V", () -> {
-						System.out.println("Another nice global shortcut!");
-					})
+				.addShortcut("M1+K", () -> {
+					System.out.println("This is a nice global shortcut!");
+				}, "userEventShortcutWithRunnable")
+				.addShortcut("M1+V", "userEventShortcut")
 				
 				// Add main menues, menues, and menues items
 				.withMainMenu("File")
 					.addMenuItem("New Playlist").onClick(() -> {
 						System.out.println("New Playlist Window...");
 					})
-					.addShorcut("M1+N")
+					.addShortcut("M1+N")
 					.addMenuSeparator()
 					.addMenu("Import Playlist")
 						.addMenuItem("iTunes")
@@ -53,6 +55,11 @@ public class NetflixApplication implements IEquoFramework {
 					})
 				.withMainMenu("Playback")
 					.addMenuItem("Play")
+					.onClick(() -> {
+						System.out.println("Playing selected movie...");
+					}, "playSelectedVideo")
+//					.onClick("playSelectedVideo")
+					.addShortcut("M1+F4")
 					.addMenuSeparator()
 					.addMenuItem("Next")
 					.addMenuItem("Previous")
