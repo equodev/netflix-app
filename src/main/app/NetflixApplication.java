@@ -59,7 +59,7 @@ public class NetflixApplication implements IEquoFramework {
 						System.out.println("Playing selected movie...");
 					}, "playSelectedVideo")
 //					.onClick("playSelectedVideo")
-					.addShortcut("M1+F4")
+					.addShortcut("SPACE")
 					.addMenuSeparator()
 					.addMenuItem("Next")
 					.addMenuItem("Previous")
