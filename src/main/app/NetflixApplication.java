@@ -29,6 +29,10 @@ public class NetflixApplication implements IEquoFramework {
 					System.out.println("This is a nice global shortcut!");
 				}, "userEventShortcutWithRunnable")
 				.addShortcut("M1+V", "userEventShortcut")
+				.onExit(() -> {
+					System.out.println("It's fine to have this method, not required though. However, the addExitMenuItem"
+							+ " method has no effect in OSx systems, since an Exit menu is already in place.");
+				})
 				
 				// Add main menues, menues, and menues items
 				.withMainMenu("File")
@@ -39,6 +43,7 @@ public class NetflixApplication implements IEquoFramework {
 					.addMenuSeparator()
 					.addMenu("Import Playlist")
 						.addMenuItem("iTunes")
+
 				.withMainMenu("View")
 					.addMenuItem("Right Sidebar")
 					.addMenuSeparator()
