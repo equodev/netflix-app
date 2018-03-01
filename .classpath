@@ -5,7 +5,9 @@
 	<classpathentry kind="src" path="images"/>
 	<classpathentry kind="src" path="js"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/com.make.equo.application.client"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.make.equo.application.provider"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.make.equo.server.offline.api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/io.netty.all"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.make.equo.application.client"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
