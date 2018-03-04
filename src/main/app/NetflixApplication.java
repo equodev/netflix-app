@@ -54,7 +54,7 @@ public class NetflixApplication implements IEquoFramework {
 					}
 					return request;
 				})
-				.addLimitedConnectionPage("index_offline.html")
+				.addLimitedConnectionPage("limitedConnectionPage.html")
 				// Add custom scripts to modify the Web application
 				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
 				.addCustomScript("imdb.js")
@@ -130,21 +130,21 @@ public class NetflixApplication implements IEquoFramework {
 	}
 
 	private String getCachePath() {
-		File equoCacheDir = new File(System.getProperty("user.home"), netflixCachePathName);
-		if (!equoCacheDir.exists()) {
-			equoCacheDir.mkdirs();
+		File netflixCacheDir = new File(System.getProperty("user.home"), netflixCachePathName);
+		if (!netflixCacheDir.exists()) {
+			netflixCacheDir.mkdirs();
 		}
-		return equoCacheDir.getAbsolutePath();
+		return netflixCacheDir.getAbsolutePath();
 	}
 
 	private void saveCurrentProfileIdToFile() {
 		if (currentProfileId != null) {
-			String startPagePath = getCurrentProfileIdFilePath();
-			File startPageFile = new File(startPagePath);
-			if (startPageFile.exists()) {
-				startPageFile.delete();
+			String currentProfileIdPath = getCurrentProfileIdFilePath();
+			File currentProfileIdFile = new File(currentProfileIdPath);
+			if (currentProfileIdFile.exists()) {
+				currentProfileIdFile.delete();
 			}
-			try (PrintWriter out = new PrintWriter(startPagePath)) {
+			try (PrintWriter out = new PrintWriter(currentProfileIdPath)) {
 				out.print(currentProfileId);
 			} catch (FileNotFoundException e1) {
 				// TODO log the exception
