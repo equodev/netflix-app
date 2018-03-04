@@ -1,7 +1,12 @@
 package main.app;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +18,18 @@ import io.netty.handler.codec.http.QueryStringDecoder;
 
 public class NetflixApplication implements IEquoFramework {
 
+	private static final String netflixCachePathName = "netflix_equo";
+
 	private String currentProfileId = null;
+	private static final String currentProfileIdFileName = "currentProfile";
 
 	@Override
 	public EquoApplication buildApp(EquoApplication application) {
+		try {
+			currentProfileId = new String(Files.readAllBytes(Paths.get(getCurrentProfileIdFilePath())));
+		} catch (IOException e1) {
+			//TODO log the exception
+		}
 		try {
 			application
 				.name("Netflix")
@@ -24,7 +37,7 @@ public class NetflixApplication implements IEquoFramework {
 				.enableOfflineSupport()
 				.addOfflineSupportFilter((request) -> {
 					String uri = request.getUri();
-					if (uri.contains("preflight")) {
+					if (uri.contains("preflight") && currentProfileId != null) {
 						QueryStringDecoder decoder = new QueryStringDecoder(uri);
 						request.setUri(decoder.path() +  "?=" +  currentProfileId);
 					}
@@ -41,6 +54,7 @@ public class NetflixApplication implements IEquoFramework {
 					}
 					return request;
 				})
+				.addLimitedConnectionPage("index_offline.html")
 				// Add custom scripts to modify the Web application
 				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
 				.addCustomScript("imdb.js")
@@ -64,10 +78,10 @@ public class NetflixApplication implements IEquoFramework {
 					.addMenuSeparator()
 					.addMenu("Import Playlist")
 						.addMenuItem("iTunes")
-						.onBeforeExit("Exit", () -> {
-							System.out.println("It's fine to have this method, not required though. However, the addExitMenuItem"
-									+ " method has no effect in OSx systems, since an Exit menu is already in place.");
-						})
+//						.onBeforeExit("Exit", () -> {
+//							System.out.println("It's fine to have this method, not required though. However, the addExitMenuItem"
+//									+ " method has no effect in OSx systems, since an Exit menu is already in place.");
+//						})
 				.withMainMenu("View")
 					.addMenuItem("Right Sidebar")
 					.addMenuSeparator()
@@ -97,14 +111,45 @@ public class NetflixApplication implements IEquoFramework {
 					.addMenuSeparator()
 					.addMenuItem("Volume Up")
 					.addMenuItem("Volume Down")
+					.onBeforeExit(() -> {
+						saveCurrentProfileIdToFile();
+					})
 					.start();
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
 		return null;
 	}
-	
+
 	public static void main(String[] args) {
 		Equo.start(NetflixApplication.class);
 	}
+
+	private String getCurrentProfileIdFilePath() {
+		return getCachePath() + File.separator + currentProfileIdFileName;
+	}
+
+	private String getCachePath() {
+		File equoCacheDir = new File(System.getProperty("user.home"), netflixCachePathName);
+		if (!equoCacheDir.exists()) {
+			equoCacheDir.mkdirs();
+		}
+		return equoCacheDir.getAbsolutePath();
+	}
+
+	private void saveCurrentProfileIdToFile() {
+		if (currentProfileId != null) {
+			String startPagePath = getCurrentProfileIdFilePath();
+			File startPageFile = new File(startPagePath);
+			if (startPageFile.exists()) {
+				startPageFile.delete();
+			}
+			try (PrintWriter out = new PrintWriter(startPagePath)) {
+				out.print(currentProfileId);
+			} catch (FileNotFoundException e1) {
+				// TODO log the exception
+			}
+		}
+	}
+
 }
