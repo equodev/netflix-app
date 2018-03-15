@@ -4,8 +4,7 @@ $(document).ready(function() {
 	
     var imdbImage = $( "<span/>" ) ;
     imdbImage.css({"max-width":"80px","height":"auto"});
-    imdbImage.append("<img id=\"imdb_img\" src=\"equo/IMDB_logo_2016.png\" style=\"max-width:60px;height:auto;\" alt=\"IMDB\" />")
-    //imdbImage.append("<img id=\"imdb_img\" src=\"file://Users/seba/myRepository/equo-product/netflix-desktop-app/bin/IMDB_logo_2016.png\" alt=\"IMDB\" />")
+    imdbImage.append("<img id=\"imdb_img\" src=\"equo/images/IMDB_logo_2016.png\" style=\"max-width:60px;height:auto;\" alt=\"IMDB\" />")
     
     var imdbLink = $( "<a/>", {
       role: "link",

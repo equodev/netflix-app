@@ -1,16 +1,18 @@
-package main.app;
+package netflix;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import com.make.equo.application.api.IEquoFramework;
-import com.make.equo.application.client.api.Equo;
 import com.make.equo.application.model.EquoApplication;
 
-import io.netty.handler.codec.http.QueryStringDecoder;
+//import io.netty.handler.codec.http.QueryStringDecoder;
 
+@Component
 public class NetflixApplication implements IEquoFramework {
 
 	private String currentProfileId = null;
@@ -21,26 +23,26 @@ public class NetflixApplication implements IEquoFramework {
 			application
 				.name("Netflix")
 				.withSingleView("http://www.netflix.com")
-				.enableOfflineSupport()
-				.addOfflineSupportFilter((request) -> {
-					String uri = request.getUri();
-					if (uri.contains("preflight")) {
-						QueryStringDecoder decoder = new QueryStringDecoder(uri);
-						request.setUri(decoder.path() +  "?=" +  currentProfileId);
-					}
-					return request;
-				})
-				.addOfflineSupportFilter((request) -> {
-					String uri = request.getUri();
-					if (uri.contains("profiles/switch")) {
-						QueryStringDecoder decoder = new QueryStringDecoder(uri);
-						Map<String, List<String>> parameters = decoder.parameters();
-						String switchProfileGuid = parameters.get("switchProfileGuid").get(0);
-						currentProfileId = switchProfileGuid;
-						request.setUri(decoder.path() + "?=" + currentProfileId);
-					}
-					return request;
-				})
+//				.enableOfflineSupport()
+//				.addOfflineSupportFilter((request) -> {
+//					String uri = request.getUri();
+//					if (uri.contains("preflight")) {
+//						QueryStringDecoder decoder = new QueryStringDecoder(uri);
+//						request.setUri(decoder.path() +  "?=" +  currentProfileId);
+//					}
+//					return request;
+//				})
+//				.addOfflineSupportFilter((request) -> {
+//					String uri = request.getUri();
+//					if (uri.contains("profiles/switch")) {
+//						QueryStringDecoder decoder = new QueryStringDecoder(uri);
+//						Map<String, List<String>> parameters = decoder.parameters();
+//						String switchProfileGuid = parameters.get("switchProfileGuid").get(0);
+//						currentProfileId = switchProfileGuid;
+//						request.setUri(decoder.path() + "?=" + currentProfileId);
+//					}
+//					return request;
+//				})
 				// Add custom scripts to modify the Web application
 				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
 				.addCustomScript("imdb.js")
@@ -64,10 +66,10 @@ public class NetflixApplication implements IEquoFramework {
 					.addMenuSeparator()
 					.addMenu("Import Playlist")
 						.addMenuItem("iTunes")
-						.onBeforeExit("Exit", () -> {
-							System.out.println("It's fine to have this method, not required though. However, the addExitMenuItem"
-									+ " method has no effect in OSx systems, since an Exit menu is already in place.");
-						})
+//						.onBeforeExit("Exit", () -> {
+//							System.out.println("It's fine to have this method, not required though. However, the addExitMenuItem"
+//									+ " method has no effect in OSx systems, since an Exit menu is already in place.");
+//						})
 				.withMainMenu("View")
 					.addMenuItem("Right Sidebar")
 					.addMenuSeparator()
@@ -104,7 +106,4 @@ public class NetflixApplication implements IEquoFramework {
 		return null;
 	}
 	
-	public static void main(String[] args) {
-		Equo.start(NetflixApplication.class);
-	}
 }
