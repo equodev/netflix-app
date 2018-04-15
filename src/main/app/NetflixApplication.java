@@ -31,9 +31,9 @@ public class NetflixApplication implements IEquoFramework {
 			//TODO log the exception
 		}
 		try {
-			application
+			return application
 				.name("Netflix")
-				.withSingleView("http://www.netflix.com")
+				.withSingleView("https://www.netflix.com")
 				.enableOfflineSupport()
 				.addOfflineSupportFilter((request) -> {
 					String uri = request.getUri();
