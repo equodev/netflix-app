@@ -57,6 +57,7 @@ public class NetflixApplication implements IEquoFramework {
 				.addLimitedConnectionPage("limitedConnectionPage.html")
 				// Add custom scripts to modify the Web application
 				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+				.addCustomScript("domModifier.js")
 				.addCustomScript("imdb.js")
 				.addCustomScript("actions.js")
 				
@@ -68,6 +69,7 @@ public class NetflixApplication implements IEquoFramework {
 					System.out.println("This is a nice global shortcut!");
 				}, "userEventShortcutWithRunnable")
 				.addShortcut("M1+V", "userEventShortcut")
+//				.addFullScreenModeShortcut("M3+F")
 				
 				// Add main menues, menues, and menues items
 				.withMainMenu("File")
@@ -92,10 +94,8 @@ public class NetflixApplication implements IEquoFramework {
 					.addMenuItem("Go Back")
 					.addMenuItem("Go Forward")
 					.addMenuSeparator()
-					.addMenuItem("Enter Full Screen")
-					.onClick(() -> {
-						System.out.println("Hello Netflix world!");
-					})
+					.addFullScreenModeMenuItem("Enter Full Screen")
+					.addShortcut("M3+F")
 				.withMainMenu("Playback")
 					.addMenuItem("Play")
 					.onClick(() -> {
@@ -110,7 +110,9 @@ public class NetflixApplication implements IEquoFramework {
 					.addMenuItem("Seek Backward")
 					.addMenuSeparator()
 					.addMenuItem("Volume Up")
+					.onClick("turnUpVolume")
 					.addMenuItem("Volume Down")
+					.onClick("turnDownVolume")
 					.onBeforeExit(() -> {
 						saveCurrentProfileIdToFile();
 					})
