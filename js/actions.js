@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  const START_VIDEO_ATTR_ID = '[data-uia="play-button"]';
   const VOLUME = 0.2;
 
   equo.on('playSelectedVideo', data => {
