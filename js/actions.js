@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const START_VIDEO_ATTR_ID = '[data-uia="play-button"]';
   const VOLUME = 0.2;
 
   equo.on('playSelectedVideo', data => {
@@ -26,4 +27,17 @@ $(document).ready(function () {
     }
   });
 
+  $(document).on('click', START_VIDEO_ATTR_ID, function (event) {
+    console.log('this is... ', this);
+    let videoTitle = NetflixUtils.getVideoTitle(this);
+    console.log('video playing is... ', videoTitle);
+    event.preventDefault();
+    equo.registerEvent({
+      key: 'movies_played',
+      segmentation: {
+        title: videoTitle,
+        country: "Germany"
+      }
+    });
+  });
 });

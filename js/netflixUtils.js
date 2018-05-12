@@ -12,7 +12,7 @@ NetflixUtils = {
 			}
 		} else {
 			parent = childElement.closest('.jawBone');
-			let outerElement = parent.find('.title.has-jawbone-nav-transition');
+			let outerElement = $(parent).find('.title.has-jawbone-nav-transition');
 			let currentTitle = outerElement.first();
 			if (currentTitle[0] == NetflixUtils.previousSelectedTitleElement) {
 				currentTitle = outerElement.last();
