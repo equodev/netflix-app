@@ -57,6 +57,7 @@ public class NetflixApplication implements IEquoFramework {
 				.addLimitedConnectionPage("limitedConnectionPage.html")
 				// Add custom scripts to modify the Web application
 				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+				.addCustomScript("netflixUtils.js")
 				.addCustomScript("domModifier.js")
 				.addCustomScript("imdb.js")
 				.addCustomScript("actions.js")
