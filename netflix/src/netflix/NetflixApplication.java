@@ -1,4 +1,4 @@
-package main.app;
+package netflix;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,12 +10,14 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 import com.make.equo.application.api.IEquoFramework;
-import com.make.equo.application.client.api.Equo;
 import com.make.equo.application.model.EquoApplication;
 
 import io.netty.handler.codec.http.QueryStringDecoder;
 
+@Component
 public class NetflixApplication implements IEquoFramework {
 
 	private static final String netflixCachePathName = "netflix_equo";
@@ -57,10 +59,10 @@ public class NetflixApplication implements IEquoFramework {
 				.addLimitedConnectionPage("limitedConnectionPage.html")
 				// Add custom scripts to modify the Web application
 				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
-				.addCustomScript("netflixUtils.js")
-				.addCustomScript("domModifier.js")
-				.addCustomScript("imdb.js")
-				.addCustomScript("actions.js")
+				.addCustomScript("js/netflixUtils.js")
+				.addCustomScript("js/domModifier.js")
+				.addCustomScript("js/imdb.js")
+				.addCustomScript("js/actions.js")
 				
 				// Add global Shorcuts
 				.addShortcut("M1+I", () -> {
@@ -122,10 +124,6 @@ public class NetflixApplication implements IEquoFramework {
 				e.printStackTrace();
 			}
 		return null;
-	}
-
-	public static void main(String[] args) {
-		Equo.start(NetflixApplication.class);
 	}
 
 	private String getCurrentProfileIdFilePath() {
