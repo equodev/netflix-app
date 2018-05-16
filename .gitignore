@@ -1,1 +1,10 @@
-/bin/
+bin/
+generated/
+/.metadata/
+/.recommenders/
+/.gradle/
+/cnf/cache/
+/cnf/release/
+.rt/
+_rt/
+.settings/

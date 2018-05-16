@@ -6,7 +6,7 @@ $(document).ready(function () {
 		"max-width": "80px",
 		"height": "auto"
 	});
-	imdbImage.append("<img id=\"imdb_img\" src=\"equo/IMDB_logo_2016.png\" style=\"max-width:60px;height:auto;\" alt=\"IMDB\" />")
+	imdbImage.append("<img id=\"imdb_img\" src=\"equo/images/IMDB_logo_2016.png\" style=\"max-width:60px;height:auto;\" alt=\"IMDB\" />")
 
 	let imdbLink = $("<a/>", {
 		role: "link",

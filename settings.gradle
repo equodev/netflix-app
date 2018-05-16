@@ -1,0 +1,14 @@
+buildscript {
+    repositories { 
+        jcenter()
+        maven {
+            //url new File(settingsDir, "../com.make.equo.gradle/mvnrepo")
+            url "http://www.equo.wemaketechnology.com/gradle/rls/repo"
+        }
+    }
+    dependencies { 
+        classpath "com.make.equo:com.make.equo.gradle.plugin:0.1.0" 
+    }
+}
+
+apply plugin: 'com.make.equo'
