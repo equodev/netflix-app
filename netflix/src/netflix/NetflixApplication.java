@@ -12,13 +12,13 @@ import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
 
-import com.make.equo.application.api.IEquoFramework;
-import com.make.equo.application.model.EquoApplication;
+import com.make.equo.application.api.IEquoApplication;
+import com.make.equo.application.model.EquoApplicationBuilder;
 
 import io.netty.handler.codec.http.QueryStringDecoder;
 
 @Component
-public class NetflixApplication implements IEquoFramework {
+public class NetflixApplication implements IEquoApplication {
 
 	private static final String netflixCachePathName = "netflix_equo";
 
@@ -26,15 +26,14 @@ public class NetflixApplication implements IEquoFramework {
 	private static final String currentProfileIdFileName = "currentProfile";
 
 	@Override
-	public EquoApplication buildApp(EquoApplication application) {
+	public EquoApplicationBuilder buildApp(EquoApplicationBuilder appBuilder) {
 		try {
 			currentProfileId = new String(Files.readAllBytes(Paths.get(getCurrentProfileIdFilePath())));
 		} catch (IOException e1) {
 			//TODO log the exception
 		}
 		try {
-			return application
-				.name("Netflix")
+			return appBuilder
 				.withSingleView("https://www.netflix.com")
 				.enableOfflineSupport()
 				.addOfflineSupportFilter((request) -> {
@@ -60,7 +59,6 @@ public class NetflixApplication implements IEquoFramework {
 				// Add custom scripts to modify the Web application
 				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
 				.addCustomScript("js/netflixUtils.js")
-				.addCustomScript("js/domModifier.js")
 				.addCustomScript("js/imdb.js")
 				.addCustomScript("js/actions.js")
 				
