@@ -17,7 +17,7 @@ import com.make.equo.application.model.EquoApplicationBuilder;
 
 import io.netty.handler.codec.http.QueryStringDecoder;
 
-@Component(properties="config.properties")
+@Component
 public class NetflixApplication implements IEquoApplication {
 
 	private static final String netflixCachePathName = "netflix_equo";
