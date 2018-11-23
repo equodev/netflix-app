@@ -1,4 +1,4 @@
--include: http://www.equo.wemaketechnology.com/framework/rls/equoapp-0.1.1.bnd
+-include: http://www.equo.maketechnology.io/framework/rls/equoapp-0.1.1.bnd
 Bundle-Version: 0.1.0
 Private-Package: netflix
 -runproperties: \
