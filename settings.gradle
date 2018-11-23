@@ -3,7 +3,7 @@ buildscript {
         jcenter()
         maven {
             //url new File(settingsDir, "../com.make.equo.gradle/mvnrepo")
-            url "http://www.equo.wemaketechnology.com/gradle/rls/repo"
+            url "http://www.equo.maketechnology.io/gradle/rls/repo"
         }
     }
     dependencies { 
