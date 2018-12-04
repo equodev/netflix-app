@@ -114,6 +114,10 @@ public class NetflixApplication implements IEquoApplication {
 					.onClick("turnUpVolume")
 					.addMenuItem("Volume Down")
 					.onClick("turnDownVolume")
+					.addMenuSeparator()
+					.addMenuItem("Search")
+					.onClick("focusSearch")
+					.addShortcut("M1+F")
 					.onBeforeExit(() -> {
 						saveCurrentProfileIdToFile();
 					})
