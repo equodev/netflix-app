@@ -27,6 +27,17 @@ $(document).ready(function () {
     }
   });
 
+  equo.on('focusSearch', data => {
+    let closeIcon = document.getElementsByClassName('icon-close')[0];
+    if (closeIcon) {
+      closeIcon.click();
+    }
+    let searchTab = document.getElementsByClassName('searchTab')[0];
+    if (searchTab) {
+      searchTab.click();
+    }
+  });
+
   $(document).on('click', START_VIDEO_ATTR_ID, function (event) {
     console.log('this is... ', this);
     let videoTitle = NetflixUtils.getVideoTitle(this);
