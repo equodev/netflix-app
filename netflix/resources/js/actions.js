@@ -1,6 +1,11 @@
 $(document).ready(function () {
   const START_VIDEO_ATTR_ID = '[data-uia="play-button"]';
   const VOLUME = 0.2;
+  var usergeo = '00000';
+  
+  $.getJSON('https://geoip-db.com/json', function (data){
+  	usergeo = GeoHash.encodeGeoHash(data.latitude, data.longitude);
+  });
 
   equo.on('playSelectedVideo', data => {
     let currentVideo = document.getElementsByTagName('video')[0];
@@ -47,7 +52,7 @@ $(document).ready(function () {
       key: 'movies_played',
       segmentation: {
         title: videoTitle,
-        country: "Germany"
+        geohash: usergeo
       }
     });
   });

@@ -59,6 +59,7 @@ public class NetflixApplication implements IEquoApplication {
 				// Add custom scripts to modify the Web application
 				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
 				.addCustomScript("js/netflixUtils.js")
+				.addCustomScript("js/geohash.js")
 				.addCustomScript("js/imdb.js")
 				.addCustomScript("js/actions.js")
 				
