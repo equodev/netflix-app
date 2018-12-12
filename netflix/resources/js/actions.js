@@ -1,12 +1,12 @@
 $(document).ready(function () {
   const START_VIDEO_ATTR_ID = '[data-uia="play-button"]';
   const VOLUME = 0.2;
-  const geoipdb = 'https://geoip-db.com/json';
-  const geohash_precision = 5;
+  const GEOIPDB = 'https://geoip-db.com/json';
+  const GEOHASH_PRECISION = 5;
   var usergeo = '00000';
   
-  $.getJSON(geoipdb, function (data){
-  	usergeo = Geohash.encode(data.latitude, data.longitude, geohash_precision);
+  $.getJSON(GEOIPDB, function (data){
+  	usergeo = Geohash.encode(data.latitude, data.longitude, GEOHASH_PRECISION);
   });
 
   equo.on('playSelectedVideo', data => {
