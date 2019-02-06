@@ -1,0 +1,2 @@
+include:
+  - remote: 'https://dl.maketechnology.io/framework/rls/equoci-0.1.3.yml'
