@@ -1,14 +1,14 @@
--include: http://www.equo.maketechnology.io/framework/rls/equoapp-0.1.2.bnd
-Bundle-Version: 0.1.0
+-include: https://dl.maketechnology.io/framework/rls/equoapp-0.1.3.bnd
+Bundle-Version: 0.1.1
 Private-Package: netflix
--runproperties: \
-# The name of the Equo application,\
-	appName=Netflix,\
-# Set to true if you want to modify the original HTML content. False otherwise. False is the default value.,\
-	change_original_html=true,\
-# The url of the Influxdb database on Equo Platform. It may contain a token to connect to it. Then it should be generated on the launcher probably,\
-	equo_influxdb_url=http://localhost:8086,\
-# Username and password to connect to the Equo Platform. For example for analytics.,\
-	equo_username='YWRtaW4=',\
-	equo_password=bHVzaXRhbm8yMDE4
-bgcolor=#FF0000
+# Application Name
+appName=Netflix
+# The organization Name
+owner=Make
+# Application background color
+bgColor=#FF0000
+# Main Application logo
+logo=resources/images/logo.png
+# Username and password to connect to the Equo Platform. For example for analytics
+equoUsername='YWRtaW4='
+equoPassword=bHVzaXRhbm8yMDE4
