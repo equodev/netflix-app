@@ -56,13 +56,14 @@ public class NetflixApplication implements IEquoApplication {
 					return request;
 				})
 				.addLimitedConnectionPage("limitedConnectionPage.html")
+				.enableAnalytics()
 				// Add custom scripts to modify the Web application
-				.addCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
-				.addCustomScript("https://cdn.jsdelivr.net/npm/latlon-geohash@1.1.0/latlon-geohash.min.js")
-				.addCustomScript("js/netflixUtils.js")
-				.addCustomScript("js/imdb.js")
-				.addCustomScript("js/actions.js")
-				
+				.withCustomScript("https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+				.withCustomScript("https://cdn.jsdelivr.net/npm/latlon-geohash@1.1.0/latlon-geohash.min.js")
+				.withCustomScript("js/netflixUtils.js")
+				.withCustomScript("js/imdb.js")
+				.withCustomScript("js/actions.js")
+				.withCustomScript("js/testLogging.js")
 				// Add global Shorcuts
 				.addShortcut("M1+I", () -> {
 						System.out.println("This is a nice global shortcut!");
