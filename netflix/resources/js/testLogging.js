@@ -54,10 +54,8 @@ $(document).ready(function () {
 	});
 	
 	const insertTestBeforeAbout = function () {
-//		let optionalBillboardLinks = $(document).find('.imdbLink');
-//		testSection.insertAfter(billboardLinks);
 		testSection.insertAfter($( ".billboard-links" ));
 	};
-
+	
 	insertTestBeforeAbout();
 });
