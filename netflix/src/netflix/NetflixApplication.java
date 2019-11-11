@@ -63,7 +63,6 @@ public class NetflixApplication implements IEquoApplication {
 				.withCustomScript("js/netflixUtils.js")
 				.withCustomScript("js/imdb.js")
 				.withCustomScript("js/actions.js")
-				.withCustomScript("js/testLogging.js")
 				// Add global Shorcuts
 				.addShortcut("M1+I", () -> {
 						System.out.println("This is a nice global shortcut!");
