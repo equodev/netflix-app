@@ -34,7 +34,7 @@ public class NetflixApplication implements IEquoApplication {
 		}
 		try {
 			return appBuilder
-				.withSingleView("https://www.netflix.com")
+				.webWrapper("https://www.netflix.com")
 				.enableOfflineSupport()
 				.addOfflineSupportFilter((request) -> {
 					String uri = request.getUri();
