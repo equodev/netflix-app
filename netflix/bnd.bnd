@@ -1,5 +1,5 @@
--include: https://dl.maketechnology.io/framework/rls/0.1.6/equoapp.bnd
-Bundle-Version: 0.1.1
+-include: https://dl.maketechnology.io/framework/0.2.0/equoapp.bnd
+Bundle-Version: 0.1.2
 Private-Package: netflix
 # Application Name
 appName=Netflix
