@@ -1,9 +1,9 @@
 buildscript {
     repositories { 
         gradlePluginPortal()
-        maven { url "http://dl.maketechnology.io/gradle/rls/" }
+        maven { url "http://dl.maketechnology.io/gradle/0.3.0/" }
     }
-    dependencies { classpath "com.make.equo:com.make.equo.gradle.plugin:0.2.0" }
+    dependencies { classpath "com.make.equo:com.make.equo.gradle.plugin:0.3.0" }
 }
 
 apply plugin: 'com.make.equo'
