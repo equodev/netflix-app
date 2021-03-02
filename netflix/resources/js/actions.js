@@ -1,3 +1,17 @@
+window.Notification = {
+  requestPermission: function () {
+    return {
+      then: function () {
+        return {
+          then: function () {
+            return { catch: function () {} };
+          },
+        };
+      },
+    };
+  },
+};
+
 $(document).ready(function () {
   const START_VIDEO_ATTR_ID = '[data-uia="play-button"]';
   const VOLUME = 0.2;
