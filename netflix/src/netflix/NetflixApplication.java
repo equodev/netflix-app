@@ -12,8 +12,8 @@ import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
 
-import com.make.equo.application.api.IEquoApplication;
-import com.make.equo.application.model.EquoApplicationBuilder;
+import com.equo.application.api.IEquoApplication;
+import com.equo.application.model.EquoApplicationBuilder;
 
 import io.netty.handler.codec.http.QueryStringDecoder;
 
@@ -34,7 +34,7 @@ public class NetflixApplication implements IEquoApplication {
 		}
 		try {
 			return appBuilder
-				.webWrapper("https://www.netflix.com")
+				.wrap("https://www.netflix.com")
 				.enableOfflineSupport()
 				.addOfflineSupportFilter((request) -> {
 					String uri = request.getUri();

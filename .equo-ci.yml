@@ -1,2 +1,2 @@
 include:
-  - remote: 'https://equo-framework.ams3.digitaloceanspaces.com/0.2.0/equoci.yml'
+  - remote: 'https://dl.equoplatform.com/framework/develop/equoci.yml'
