@@ -1,5 +1,5 @@
--include: https://dl.equoplatform.com/framework/develop/equoapp.bnd,\
-        https://dl.equoplatform.com/framework-offline/develop/offline.bnd
+-include: https://dl.equoplatform.com/framework/1.0.0/equoapp.bnd,\
+        https://dl.equoplatform.com/framework-offline/1.0.0/offline.bnd
 Bundle-Version: 0.1.2
 Private-Package: netflix
 # Application Name
