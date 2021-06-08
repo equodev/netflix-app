@@ -13,3 +13,5 @@ logo=resources/images/logo.png
 # Username and password to connect to the Equo Platform. For example for analytics
 equoUsername='YWRtaW4='
 equoPassword=bHVzaXRhbm8yMDE4
+
+-buildpath.logging: com.equo.logging.client.api
