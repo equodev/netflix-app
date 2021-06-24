@@ -1,4 +1,5 @@
--include: https://dl.maketechnology.io/framework/0.2.0/equoapp.bnd
+-include: https://dl.equoplatform.com/framework/1.0.0/equoapp.bnd
+
 Bundle-Version: 0.1.2
 Private-Package: netflix
 # Application Name
@@ -12,3 +13,5 @@ logo=resources/images/logo.png
 # Username and password to connect to the Equo Platform. For example for analytics
 equoUsername='YWRtaW4='
 equoPassword=bHVzaXRhbm8yMDE4
+
+-buildpath.logging: com.equo.logging.client.api
